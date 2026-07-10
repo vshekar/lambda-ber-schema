@@ -75,3 +75,30 @@ def ssrl_mx_loader(ssrl_mx_sample_metadata_path, ssrl_mx_processing_results_path
         metadata_file=ssrl_mx_sample_metadata_path,
         processing_results_file=ssrl_mx_processing_results_path,
     )
+
+
+_NSLS2_MX_FIXTURE_DIR = FIXTURES_DIR / "nsls2_mx"
+
+
+@pytest.fixture
+def nsls2_mx_tiled_run_path() -> Path:
+    """Return path to representative NSLS2 AMX Tiled run fixture."""
+    return _NSLS2_MX_FIXTURE_DIR / "tiled_run.json"
+
+
+@pytest.fixture
+def nsls2_mx_run_tree_path() -> Path:
+    """Return path to representative NSLS2 AMX run-tree fixture."""
+    return _NSLS2_MX_FIXTURE_DIR / "run_tree.json"
+
+
+@pytest.fixture
+def nsls2_mx_tiled_run(nsls2_mx_tiled_run_path: Path) -> dict:
+    """Load representative NSLS2 AMX Tiled run fixture."""
+    return json.loads(nsls2_mx_tiled_run_path.read_text())
+
+
+@pytest.fixture
+def nsls2_mx_run_tree(nsls2_mx_run_tree_path: Path) -> list[str]:
+    """Load representative NSLS2 AMX run-tree file list."""
+    return json.loads(nsls2_mx_run_tree_path.read_text())
